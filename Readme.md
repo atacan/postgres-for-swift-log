@@ -57,42 +57,6 @@ CREATE INDEX idx_logs_metadata ON logs USING gin (metadata); -- If querying JSON
 
 Remember the table name you choose, as you'll need it when configuring the `PostgresLogProcessor`.
 
-## Installation
-
-Add `LoggingToPostgres` as a dependency to your `Package.swift` file:
-
-```swift
-// swift-tools-version:5.7
-import PackageDescription
-
-let package = Package(
-    name: "YourPackageName",
-    platforms: [
-       .macOS(.v13) // Or your target platform
-    ],
-    dependencies: [
-        .package(url: "https://github.com/atacan/postgres-for-swift-log.git", from: "0.0.1"),
-        .package(url: "https://github.com/apple/swift-log.git", from: "1.5.2"),
-        .package(url: "https://github.com/swift-server/swift-service-lifecycle.git", from: "2.0.0"),
-        .package(url: "https://github.com/vapor/postgres-nio.git", from: "1.25.0"),
-        // ... other dependencies
-    ],
-    targets: [
-        .target(
-            name: "YourTargetName",
-            dependencies: [
-                .product(name: "Logging", package: "swift-log"),
-                .product(name: "PostgresNIO", package: "postgres-nio"),
-                .product(name: "ServiceLifecycle", package: "swift-service-lifecycle"),
-                .product(name: "LoggingToPostgres", package: "postgres-for-swift-log"),
-                // ... other dependencies
-            ]
-        ),
-        // ... other targets
-    ]
-)
-```
-
 ## Usage
 
 1.  **Configure `PostgresClient`:** Set up your database connection using `PostgresNIO`.
@@ -158,3 +122,39 @@ When the `ServiceGroup` initiates a shutdown (e.g., upon receiving `SIGINT` or `
 4.  Shuts down cleanly.
 
 This ensures that logs generated right before shutdown are not lost.
+
+## Installation
+
+Add `LoggingToPostgres` as a dependency to your `Package.swift` file:
+
+```swift
+// swift-tools-version:5.7
+import PackageDescription
+
+let package = Package(
+    name: "YourPackageName",
+    platforms: [
+       .macOS(.v13) // Or your target platform
+    ],
+    dependencies: [
+        .package(url: "https://github.com/atacan/postgres-for-swift-log.git", from: "0.0.1"),
+        .package(url: "https://github.com/apple/swift-log.git", from: "1.5.2"),
+        .package(url: "https://github.com/swift-server/swift-service-lifecycle.git", from: "2.0.0"),
+        .package(url: "https://github.com/vapor/postgres-nio.git", from: "1.25.0"),
+        // ... other dependencies
+    ],
+    targets: [
+        .target(
+            name: "YourTargetName",
+            dependencies: [
+                .product(name: "Logging", package: "swift-log"),
+                .product(name: "PostgresNIO", package: "postgres-nio"),
+                .product(name: "ServiceLifecycle", package: "swift-service-lifecycle"),
+                .product(name: "LoggingToPostgres", package: "postgres-for-swift-log"),
+                // ... other dependencies
+            ]
+        ),
+        // ... other targets
+    ]
+)
+```
