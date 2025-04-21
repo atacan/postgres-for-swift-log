@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:ServiceGroupExample}",
+            "name": "Debug ServiceGroupExample",
+            "program": "${workspaceFolder:ServiceGroupExample}/.build/debug/ServiceGroupExample",
+            "preLaunchTask": "swift: Build Debug ServiceGroupExample"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:ServiceGroupExample}",
+            "name": "Release ServiceGroupExample",
+            "program": "${workspaceFolder:ServiceGroupExample}/.build/release/ServiceGroupExample",
+            "preLaunchTask": "swift: Build Release ServiceGroupExample"
+        }
+    ]
+}
